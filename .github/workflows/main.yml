@@ -1,0 +1,35 @@
+name: Build mcpelauncher-client
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install --no-install-recommends g++ clang cmake make git ca-certificates libssl-dev libpng-dev libx11-dev libxi-dev libcurl4-openssl-dev libudev-dev libevdev-dev libegl1-mesa-dev libssl-dev libasound2 qtbase5-dev qtwebengine5-dev qtdeclarative5-dev libqt5svg5-dev qml-module-qtquick2 qml-module-qtquick-layouts qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-window2 qml-module-qtquick-dialogs qml-module-qt-labs-settings qml-module-qt-labs-folderlistmodel qml-module-qtwebengine -y
+    
+      - name: Create build directory and configure
+        run: |
+          mkdir -p build && cd build
+          CC=clang CXX=clang++ cmake .. -Wno-dev -DCMAKE_BUILD_TYPE=Release -DJNI_USE_JNIVM=ON
+
+      - name: Build with parallel jobs
+        run: |
+          cpack --config mcpelauncher-client/CPackConfig.cmake
+          make -j$(getconf _NPROCESSORS_ONLN)
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: mcpelauncher-client
+          path: build/mcpelauncher-*

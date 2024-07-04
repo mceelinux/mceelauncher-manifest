@@ -3,10 +3,10 @@ name: Build mcpelauncher-client
 on:
   push:
     branches:
-      - main
+      - ng
   pull_request:
     branches:
-      - main
+      - ng
   workflow_dispatch:
 
 jobs:

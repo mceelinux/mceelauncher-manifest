@@ -22,16 +22,18 @@ jobs:
     
       - name: Create build directory and configure
         run: |
+          git clone --recursive https://github.com/mceelinux/mceelauncher-manifest/ mceelauncher-manifest && cd mceelauncher-manifest
           mkdir -p build && cd build
           CC=clang CXX=clang++ cmake .. -Wno-dev -DCMAKE_BUILD_TYPE=Release -DJNI_USE_JNIVM=ON
 
       - name: Build with parallel jobs
         run: |
+          cd mceelauncher-manifest/build
+          mceelauncher-manifest
           cpack --config mcpelauncher-client/CPackConfig.cmake
-          make -j$(getconf _NPROCESSORS_ONLN)
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: mcpelauncher-client
-          path: build/mcpelauncher-*
+          path: mceelauncher-manifest/build/mcpelauncher-*

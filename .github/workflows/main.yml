@@ -31,7 +31,6 @@ jobs:
       - name: Build with parallel jobs
         run: |
           cd mceelauncher-manifest/build
-          mceelauncher-manifest
           cpack --config mcpelauncher-client/CPackConfig.cmake
 
       - name: Upload artifact

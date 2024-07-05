@@ -78,7 +78,7 @@
 	url = https://github.com/ChristopherHX/libjnivm.git
 [submodule "mcpelauncher-errorwindow"]
 	path = mcpelauncher-errorwindow
-	url = https://github.com/minecraft-linux/mcpelauncher-errorwindow.git
+	url = https://github.com/mceelinux/mceelauncher-errorwindow.git
 [submodule "sdl3"]
 	path = sdl3
 	url = https://github.com/libsdl-org/SDL

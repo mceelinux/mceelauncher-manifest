@@ -1,10 +1,6 @@
-# mcpelauncher
+# mceelauncher
 
-An unstable unofficial launcher for the Android version of Minecraft: Bedrock Edition on linux and macOS.
-
-# UI
-
-The User Interface to login, download and manage Versions can be found [here](https://github.com/minecraft-linux/mcpelauncher-ui-manifest)
+An unstable (and possibly unusable) unofficial launcher for the Android version of Minecraft Education on Linux.
 
 # System Requirements
 
